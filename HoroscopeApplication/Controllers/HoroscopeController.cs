@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HoroscopeApplication.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,12 @@ namespace HoroscopeApplication.Controllers
 {
     public class HoroscopeController : Controller
     {
-        public IActionResult Index()
+        [HttpPost]
+        public IActionResult Find(DateOfBirthViewModel model)
         {
-            return View();
+            var date = model.Dob;
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
