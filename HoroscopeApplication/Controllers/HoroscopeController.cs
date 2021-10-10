@@ -1,4 +1,5 @@
-﻿using HoroscopeApplication.ViewModels;
+﻿using HoroscopeApplication.Repository;
+using HoroscopeApplication.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,22 @@ namespace HoroscopeApplication.Controllers
 {
     public class HoroscopeController : Controller
     {
-        [HttpPost]
-        public IActionResult Find(DateOfBirthViewModel model)
+        private readonly ISunsignRepository _sunsignRepository;
+        private readonly IHoroscopeRepository _horoscopeRepository;
+
+        public HoroscopeController(ISunsignRepository sunsignRepository, IHoroscopeRepository horoscopeRepository)
         {
-            var date = model.Dob;
+            _sunsignRepository = sunsignRepository;
+            _horoscopeRepository = horoscopeRepository;
+        }
+        [HttpPost]
+        public async Task<IActionResult> Find(DateOfBirthViewModel model)
+        {
+            var date = model.Dob.ToShortDateString();
+            var dateKey = date.Substring(0,date.LastIndexOf("-"));
+            var sunsign = await _sunsignRepository.GetSunsign(dateKey);
+
+            var horoscope = await _horoscopeRepository.GetHoroscope(sunsign);
 
             return RedirectToAction("Index", "Home");
         }

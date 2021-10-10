@@ -8,6 +8,7 @@ namespace HoroscopeApplication.Models
 {
     public class Sunsign
     {
+        public int Id { get; set; }
         [Required]
         public string Date { get; set; }
         [Required]

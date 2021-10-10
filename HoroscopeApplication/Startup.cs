@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HoroscopeApplication.Models;
 using Microsoft.EntityFrameworkCore;
+using HoroscopeApplication.Services;
 
 namespace HoroscopeApplication
 {
@@ -35,7 +36,7 @@ namespace HoroscopeApplication
                 option.UseSqlServer(Configuration.GetConnectionString("HoroscopeClientDBConnection"))
             );
 
-            services.AddRefitClient<IHoroscopeRepository>()
+            services.AddRefitClient<IHoroscopeApiService>()
                 .ConfigureHttpClient(c =>
                 {
                     c.BaseAddress = new Uri(Configuration["AztroApi:BaseAddress"]);
@@ -43,6 +44,9 @@ namespace HoroscopeApplication
                     c.DefaultRequestHeaders.Add("x-rapidapi-key", Configuration["AztroApi:ApiKey"]);
                     c.Timeout = TimeSpan.FromSeconds(10);
                 });
+
+            services.AddScoped<ISunsignRepository, SunsignRepository>();
+            services.AddSingleton<IHoroscopeRepository, HoroscopeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +64,8 @@ namespace HoroscopeApplication
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseCustomMiddleware();
 
             app.UseMvcWithDefaultRoute();
         }

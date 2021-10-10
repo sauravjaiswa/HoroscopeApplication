@@ -15,14 +15,5 @@ namespace HoroscopeApplication.Models
         }
 
         public DbSet<Sunsign> Sunsigns { get; set; }
-
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-        //    if (Sunsigns.Count() == 0)
-        //    {
-        //        modelBuilder.Seed();
-        //    }
-        //}
     }
 }
