@@ -46,7 +46,7 @@ namespace HoroscopeApplication
                 });
 
             services.AddScoped<ISunsignRepository, SunsignRepository>();
-            services.AddSingleton<IHoroscopeRepository, HoroscopeRepository>();
+            services.AddScoped<IHoroscopeRepository, HoroscopeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

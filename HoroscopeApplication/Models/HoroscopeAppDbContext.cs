@@ -15,5 +15,6 @@ namespace HoroscopeApplication.Models
         }
 
         public DbSet<Sunsign> Sunsigns { get; set; }
+        public DbSet<HoroscopeCache> HoroscopeCaches { get; set; }
     }
 }
