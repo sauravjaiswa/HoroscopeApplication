@@ -1,0 +1,74 @@
+﻿@model HoroscopeApplication.ViewModels.HoroscopeViewModel
+
+@{ 
+    ViewBag.Title = "Your Horoscope";
+    var sunsign = Model.Sunsign;
+}
+
+<div class="container">
+    <div class="row" style="height:auto">
+        <div class="col-sm-5 mt-2">
+            <a class="avatar avatar-xl rounded-circle">
+                <img id="tempImg" alt="Sunsign image" src="~/images/sunsigns/@(sunsign).jpeg" style="width: 150px; border-radius: 50%;">
+            </a>
+        </div>
+        <div class="col-sm-5 mt-2">
+            <div class="card">
+                <div id="temp" class="card-header">
+                    <h3>@sunsign</h3>
+                </div>
+                <div class="card-footer">
+                    <h6>DateRange - @Model.Horoscope.Date_range</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10 mt-2">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Today's Horoscope</h3>
+                </div>
+                <div class="card-body">
+                    <h6>@Model.Horoscope.Description</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" style="height:auto">
+        <div class="col-sm-5 mt-2">
+            <div class="card">
+                <div id="temp" class="card-header">
+                    <h3>Compatibility Match</h3>
+                </div>
+                <div class="card-body">
+                    <h6>@Model.Horoscope.Compatibility</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5 mt-2">
+            <a class="avatar avatar-xl rounded-circle">
+                <img id="tempImg" alt="Sunsign image" src="~/images/sunsigns/@(Model.Horoscope.Compatibility).jpeg" style="width: 150px; border-radius: 50%;">
+            </a>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-10 mt-2">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Other Informations</h3>
+                </div>
+                <div class="card-body">
+                    <h6>Color - @Model.Horoscope.Color</h6>
+                    <h6>Lucky Number - @Model.Horoscope.Lucky_number</h6>
+                    <h6>Lucky Time - @Model.Horoscope.Lucky_time</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

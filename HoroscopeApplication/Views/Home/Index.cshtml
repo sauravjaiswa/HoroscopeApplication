@@ -10,16 +10,44 @@
         <p>Enter your Date of Birth to find your horoscope</p>
         <div class="row">
             <div class="col-md-3" style="margin: auto">
-                <form method="post">
+                <form method="post" asp-action="Index" asp-controller="Horoscope">
                     <div class="form-group">
                         <input id="datepicker1" type="date" class="form-control" asp-for="Dob">
                         <span asp-validation-for="Dob" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-outline-success" asp-controller="Horoscope" asp-action="Find">Find Horoscope</button>
+                        <button id="btnFindHoroscope" class="btn btn-outline-success">Find Horoscope</button>
                     </div>
                 </form>
             </div>
         </div>
+
+        @*<div class="row">
+            <div class="col-sm-3 mt-2">
+                <a class="avatar avatar-xl rounded-circle">
+                    <img id="tempImg" alt="Image placeholder" src="https://demos.creative-tim.com/argon-dashboard-pro/assets/img/theme/team-4.jpg" style="width: 200px; border-radius: 50%;">
+                </a>
+            </div>
+            <div class="col-sm-7 mt-2">
+                <div class="card">
+                    <div id="temp" class="card-body">
+                        This is some text within a card body.
+                    </div>
+                </div>
+            </div>
+        </div>*@
     </div>
 </div>
+
+@*@section Scripts{
+    <script>
+        let content = document.getElementById("temp")
+        let image = document.getElementById("tempImg")
+
+        document.getElementById("btnFindHoroscope").addEventListener("click", () => {
+            content.innerText = "abcd";
+            image.src = "~/images/sunsigns/aquarius.jpg";
+            console.log(image);
+        })
+    </script>
+}*@

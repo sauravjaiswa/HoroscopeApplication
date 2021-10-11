@@ -18,16 +18,22 @@ namespace HoroscopeApplication.Controllers
             _sunsignRepository = sunsignRepository;
             _horoscopeRepository = horoscopeRepository;
         }
+
         [HttpPost]
-        public async Task<IActionResult> Find(DateOfBirthViewModel model)
+        public async Task<IActionResult> Index(DateOfBirthViewModel model)
         {
             var date = model.Dob.ToShortDateString();
-            var dateKey = date.Substring(0,date.LastIndexOf("-"));
+            var dateKey = date.Substring(0, date.LastIndexOf("-"));
             var sunsign = await _sunsignRepository.GetSunsign(dateKey);
 
             var horoscope = await _horoscopeRepository.GetHoroscope(sunsign);
+            HoroscopeViewModel horoscopeViewModel = new HoroscopeViewModel
+            {
+                Sunsign = sunsign,
+                Horoscope = horoscope
+            };
 
-            return RedirectToAction("Index", "Home");
+            return View(horoscopeViewModel);
         }
     }
 }

@@ -13,12 +13,10 @@ namespace HoroscopeApplication.Services
     public class CustomMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly ISunsignRepository _sunsignRepository;
 
         public CustomMiddleware(RequestDelegate next)
         {
             _next = next;
-            //_sunsignRepository = sunsignRepository;
         }
 
         public async Task Invoke(HttpContext httpContext, ISunsignRepository sunsignRepository)
