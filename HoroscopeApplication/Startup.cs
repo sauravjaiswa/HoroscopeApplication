@@ -45,6 +45,12 @@ namespace HoroscopeApplication
                     c.Timeout = TimeSpan.FromSeconds(10);
                 });
 
+            //services.AddRefitClient<ITestService>()
+            //    .ConfigureHttpClient(c =>
+            //    {
+            //        c.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/todos/1");
+            //    });
+
             services.AddScoped<ISunsignRepository, SunsignRepository>();
             services.AddScoped<IHoroscopeRepository, HoroscopeRepository>();
         }

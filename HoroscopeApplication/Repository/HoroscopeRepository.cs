@@ -1,4 +1,5 @@
 ﻿using HoroscopeApplication.Models;
+using HoroscopeApplication.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +11,8 @@ namespace HoroscopeApplication.Repository
         private readonly IHoroscopeApiService _horoscopeApiService;
         private readonly HoroscopeAppDbContext _dbContext;
 
-        public HoroscopeRepository(IHoroscopeApiService horoscopeApiService, HoroscopeAppDbContext dbContext)
+        public HoroscopeRepository(IHoroscopeApiService horoscopeApiService, 
+                                    HoroscopeAppDbContext dbContext)
         {
             _horoscopeApiService = horoscopeApiService;
             _dbContext = dbContext;
@@ -28,7 +30,7 @@ namespace HoroscopeApplication.Repository
                 if (currDate > prevDate)
                 {
                     horoscopeModel = await _horoscopeApiService.GetHoroscope(sign);
-                    _dbContext.HoroscopeCaches.Remove(prevHoroscope);
+                    RemoveCacheEntry(prevHoroscope);
 
                     HoroscopeCache horoscopeCache = new HoroscopeCache
                     {
@@ -43,7 +45,7 @@ namespace HoroscopeApplication.Repository
                         Mood = horoscopeModel.Mood,
                         AddedTimestamp = DateTime.Now
                     };
-                    _dbContext.HoroscopeCaches.Add(horoscopeCache);
+                    await AddCacheEntry(horoscopeCache);
                 }
                 else
                 {
@@ -78,11 +80,21 @@ namespace HoroscopeApplication.Repository
                     Mood = horoscopeModel.Mood,
                     AddedTimestamp = DateTime.Now
                 };
-                _dbContext.HoroscopeCaches.Add(horoscopeCache);
+                await AddCacheEntry(horoscopeCache);
             }
-            await _dbContext.SaveChangesAsync();
 
             return horoscopeModel;
+        }
+
+        public async Task AddCacheEntry(HoroscopeCache horoscopeCache)
+        {
+            await _dbContext.HoroscopeCaches.AddAsync(horoscopeCache);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public void RemoveCacheEntry(HoroscopeCache horoscopeCache)
+        {
+            _dbContext.HoroscopeCaches.Remove(horoscopeCache);
         }
     }
 }
