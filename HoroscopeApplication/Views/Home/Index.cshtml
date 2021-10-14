@@ -4,6 +4,7 @@
     ViewData["Title"] = "Home";
 }
 
+<div id="loader" class="center"></div>
 <div class="text-center">
     <h1 class="display-4">Welcome to Horoscope Finder</h1>
     <div class="container">
@@ -16,163 +17,182 @@
                         <span asp-validation-for="Dob" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <button id="btnFindHoroscope" class="btn btn-outline-success">Find Horoscope</button>
+                        <button id="btnFindHoroscope" class="btn btn-outline-dark">Find Horoscope</button>
                     </div>
                 </form>
             </div>
         </div>
+    </div>
 
 
 
-        <div class="container">
-            <div class="row">
-                <div class="card middle">
-                    <div class="front">
-                        <img src="~/images/sunsigns/aquarius.svg" alt="">
-                    </div>
-                    <div class="back">
-                        <div class="back-content middle">
-                            <h4>Aquarius</h4>
-                            <span>Info</span>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="row flex justify-content-center">
+            <div class="card middle">
+                <div class="front">
+                    <img src="~/images/sunsigns/aquarius.png" alt="">
+                    <h4>Aquarius</h4>
                 </div>
-
-                <div class="card middle">
-                    <div class="front">
-                        <img src="~/images/sunsigns/pisces.svg" alt="">
-                    </div>
-                    <div class="back">
-                        <div class="back-content middle">
-                            <h4>Pisces</h4>
-                            <span>Info</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card middle">
-                    <div class="front">
-                        <img src="~/images/sunsigns/aries.svg" alt="">
-                    </div>
-                    <div class="back">
-                        <div class="back-content middle">
-                            <h4>DarkCode</h4>
-                            <span>Info</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card middle">
-                    <div class="front">
-                        <img src="~/images/sunsigns/taurus.svg" alt="">
-                    </div>
-                    <div class="back">
-                        <div class="back-content middle">
-                            <h4>Taurus</h4>
-                            <span>Info</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card middle">
-                    <div class="front">
-                        <img src="~/images/sunsigns/gemini.svg" alt="">
-                    </div>
-                    <div class="back">
-                        <div class="back-content middle">
-                            <h4>Gemini</h4>
-                            <span>Info</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card middle">
-                    <div class="front">
-                        <img src="~/images/sunsigns/cancer.svg" alt="">
-                    </div>
-                    <div class="back">
-                        <div class="back-content middle">
-                            <h4>Cancer</h4>
-                            <span>Info</span>
-                        </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <span>Info</span>
                     </div>
                 </div>
             </div>
 
-
-            <div class="row">
-                <div class="card middle">
-                    <div class="front">
-                        <img src="~/images/sunsigns/leo.svg" alt="">
-                    </div>
-                    <div class="back">
-                        <div class="back-content middle">
-                            <h4>Leo</h4>
-                            <span>Info</span>
-                        </div>
+            <div class="card middle">
+                <div class="front">
+                    <img src="~/images/sunsigns/pisces.png" alt="">
+                    <h4>Pisces</h4>
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <span>Info</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="card middle">
-                    <div class="front">
-                        <img src="~/images/sunsigns/virgo.svg" alt="">
-                    </div>
-                    <div class="back">
-                        <div class="back-content middle">
-                            <h4>Virgo</h4>
-                            <span>Info</span>
-                        </div>
+            <div class="card middle">
+                <div class="front">
+                    <img src="~/images/sunsigns/aries.png" alt="">
+                    <h4>Aries</h4>
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <span>Info</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="card middle">
-                    <div class="front">
-                        <img src="~/images/sunsigns/libra.svg" alt="">
-                    </div>
-                    <div class="back">
-                        <div class="back-content middle">
-                            <h4>Libra</h4>
-                            <span>Info</span>
-                        </div>
+            <div class="card middle">
+                <div class="front">
+                    <img src="~/images/sunsigns/taurus.png" alt="">
+                    <h4>Taurus</h4>
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <span>Info</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="card middle">
-                    <div class="front">
-                        <img src="~/images/sunsigns/scorpio.svg" alt="">
-                    </div>
-                    <div class="back">
-                        <div class="back-content middle">
-                            <h4>Scorpio</h4>
-                            <span>Info</span>
-                        </div>
+            <div class="card middle">
+                <div class="front">
+                    <img src="~/images/sunsigns/gemini.png" alt="">
+                    <h4>Gemini</h4>
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <span>Info</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="card middle">
-                    <div class="front">
-                        <img src="~/images/sunsigns/sagittarius.svg" alt="">
-                    </div>
-                    <div class="back">
-                        <div class="back-content middle">
-                            <h4>Sagittarius</h4>
-                            <span>Info</span>
-                        </div>
+            <div class="card middle">
+                <div class="front">
+                    <img src="~/images/sunsigns/cancer.png" alt="">
+                    <h4>Cancer</h4>
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <span>Info</span>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="card middle">
-                    <div class="front">
-                        <img src="~/images/sunsigns/capricorn.svg" alt="">
+
+        <div class="row flex justify-content-center">
+            <div class="card middle">
+                <div class="front">
+                    <img src="~/images/sunsigns/leo.png" alt="">
+                    <h4>Leo</h4>
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <span>Info</span>
                     </div>
-                    <div class="back">
-                        <div class="back-content middle">
-                            <h4>Capricorn</h4>
-                            <span>Info</span>
-                        </div>
+                </div>
+            </div>
+
+            <div class="card middle">
+                <div class="front">
+                    <img src="~/images/sunsigns/virgo.png" alt="">
+                    <h4>Virgo</h4>
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <span>Info</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card middle">
+                <div class="front">
+                    <img src="~/images/sunsigns/libra.png" alt="">
+                    <h4>Libra</h4>
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <span>Info</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card middle">
+                <div class="front">
+                    <img src="~/images/sunsigns/scorpio.png" alt="">
+                    <h4>Scorpio</h4>
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <span>Info</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card middle">
+                <div class="front">
+                    <img src="~/images/sunsigns/sagittarius.png" alt="">
+                    <h4>Sagittarius</h4>
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <span>Info</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card middle">
+                <div class="front">
+                    <img src="~/images/sunsigns/capricorn.png" alt="">
+                    <h4>Capricorn</h4>
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <span>Info</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+@section Scripts{
+    <script>
+        document.onreadystatechange = function () {
+            if (document.readyState !== "complete") {
+                document.querySelector(
+                    "body").style.visibility = "hidden";
+                document.querySelector(
+                    "#loader").style.visibility = "visible";
+            } else {
+                document.querySelector(
+                    "#loader").style.display = "none";
+                document.querySelector(
+                    "body").style.visibility = "visible";
+            }
+        };
+    </script>
+}

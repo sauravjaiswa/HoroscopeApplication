@@ -100,6 +100,10 @@ body {
     background: #2c3e50;
 }
 
+.front h4{
+    color: white;
+}
+
 .back {
     background: #2c3e50;
     transform: perspective(600px) rotateY(180deg);
