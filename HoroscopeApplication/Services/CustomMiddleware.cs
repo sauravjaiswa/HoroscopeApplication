@@ -21,6 +21,7 @@ namespace HoroscopeApplication.Services
 
         public async Task Invoke(HttpContext httpContext, ISunsignRepository sunsignRepository)
         {
+            SunsignBasicInfoRepository.MapSunsignBasicInfo();
             await sunsignRepository.MapDates();
 
             await _next(httpContext);

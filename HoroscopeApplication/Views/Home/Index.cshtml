@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Home";
+    var cnt = 0;
 }
 
 <div id="divLoader" style="display: none; position: center">
@@ -26,156 +27,28 @@
         </div>
     </div>
 
-
+    
 
     <div class="container">
         <div class="row flex justify-content-center">
-            <div class="card middle">
-                <div class="front">
-                    <img src="~/images/sunsigns/aquarius.png" alt="">
-                    <h4>Aquarius</h4>
-                </div>
-                <div class="back">
-                    <div class="back-content middle">
-                        <span>Info</span>
+
+            @foreach (var sunsignInfo in Model.SunsignBasicInfos)
+            {
+                <div id="signCard" class="card middle">
+                    <div class="front">
+                        <img src="~/images/sunsigns/@(sunsignInfo.Key).png" alt="">
+                        <h5>@(sunsignInfo.Key)</h5>
+                    </div>
+
+                    <div class="back">
+                        <div class="back-content middle">
+                            <h5>@sunsignInfo.Value.DateRange</h5>
+                            <p>@sunsignInfo.Value.About</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="card middle">
-                <div class="front">
-                    <img src="~/images/sunsigns/pisces.png" alt="">
-                    <h4>Pisces</h4>
-                </div>
-                <div class="back">
-                    <div class="back-content middle">
-                        <span>Info</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card middle">
-                <div class="front">
-                    <img src="~/images/sunsigns/aries.png" alt="">
-                    <h4>Aries</h4>
-                </div>
-                <div class="back">
-                    <div class="back-content middle">
-                        <span>Info</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card middle">
-                <div class="front">
-                    <img src="~/images/sunsigns/taurus.png" alt="">
-                    <h4>Taurus</h4>
-                </div>
-                <div class="back">
-                    <div class="back-content middle">
-                        <span>Info</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card middle">
-                <div class="front">
-                    <img src="~/images/sunsigns/gemini.png" alt="">
-                    <h4>Gemini</h4>
-                </div>
-                <div class="back">
-                    <div class="back-content middle">
-                        <span>Info</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card middle">
-                <div class="front">
-                    <img src="~/images/sunsigns/cancer.png" alt="">
-                    <h4>Cancer</h4>
-                </div>
-                <div class="back">
-                    <div class="back-content middle">
-                        <span>Info</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row flex justify-content-center">
-            <div class="card middle">
-                <div class="front">
-                    <img src="~/images/sunsigns/leo.png" alt="">
-                    <h4>Leo</h4>
-                </div>
-                <div class="back">
-                    <div class="back-content middle">
-                        <span>Info</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card middle">
-                <div class="front">
-                    <img src="~/images/sunsigns/virgo.png" alt="">
-                    <h4>Virgo</h4>
-                </div>
-                <div class="back">
-                    <div class="back-content middle">
-                        <span>Info</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card middle">
-                <div class="front">
-                    <img src="~/images/sunsigns/libra.png" alt="">
-                    <h4>Libra</h4>
-                </div>
-                <div class="back">
-                    <div class="back-content middle">
-                        <span>Info</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card middle">
-                <div class="front">
-                    <img src="~/images/sunsigns/scorpio.png" alt="">
-                    <h4>Scorpio</h4>
-                </div>
-                <div class="back">
-                    <div class="back-content middle">
-                        <span>Info</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card middle">
-                <div class="front">
-                    <img src="~/images/sunsigns/sagittarius.png" alt="">
-                    <h4>Sagittarius</h4>
-                </div>
-                <div class="back">
-                    <div class="back-content middle">
-                        <span>Info</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card middle">
-                <div class="front">
-                    <img src="~/images/sunsigns/capricorn.png" alt="">
-                    <h4>Capricorn</h4>
-                </div>
-                <div class="back">
-                    <div class="back-content middle">
-                        <span>Info</span>
-                    </div>
-                </div>
-            </div>
+                cnt++;
+            }
         </div>
     </div>
 </div>

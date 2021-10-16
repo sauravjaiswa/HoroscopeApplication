@@ -75,10 +75,10 @@ body {
 
 
 /*For the card hover on Home/Index page*/
-.card {
+#signCard {
     cursor: pointer;
-    width: 175px;
-    height: 175px;
+    width: 215px;
+    height: 250px;
 }
 
 .front, .back {
@@ -115,13 +115,18 @@ body {
     color: #f1f1f1;
     text-align: center;
     width: 100%;
-    padding: 5px;
+    padding: 10px;
 }
 
-.card:hover > .front {
+#signCard:hover > .front {
     transform: perspective(600px) rotateY(-180deg);
 }
 
-.card:hover > .back {
+#signCard:hover > .back {
     transform: perspective(600px) rotateY(0deg);
+}
+
+
+#horoscopeCard {
+    background: #2c3e50;
 }

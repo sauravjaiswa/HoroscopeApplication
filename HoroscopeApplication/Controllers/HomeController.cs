@@ -1,4 +1,6 @@
 ﻿using HoroscopeApplication.Models;
+using HoroscopeApplication.Repository;
+using HoroscopeApplication.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -20,7 +22,12 @@ namespace HoroscopeApplication.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            DateOfBirthViewModel dateOfBirthViewModel = new DateOfBirthViewModel
+            {
+                Dob = DateTime.UtcNow.Date,
+                SunsignBasicInfos = SunsignBasicInfoRepository.GetAllBasicInfo()
+            };
+            return View(dateOfBirthViewModel);
         }
 
         public IActionResult Privacy()
