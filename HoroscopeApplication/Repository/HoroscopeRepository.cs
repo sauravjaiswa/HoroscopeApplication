@@ -115,7 +115,7 @@ namespace HoroscopeApplication.Repository
             Horoscope horoscopeModel = null;
             if (prevHoroscope != null)
             {
-                var currDate = DateTime.UtcNow.AddDays(1).Date;
+                var currDate = DateTime.UtcNow.Date;
                 var prevDate = prevHoroscope.AddedTimestamp.Date;
 
                 if (currDate > prevDate)

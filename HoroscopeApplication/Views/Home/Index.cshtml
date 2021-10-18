@@ -5,29 +5,28 @@
     var cnt = 0;
 }
 
-<div id="divLoader" style="display: none; position: center">
-    <img src="~/images/loader.gif" />
-</div>
 <div class="text-center">
     <h1 class="display-4">Welcome to Horoscope Finder</h1>
     <div class="container">
         <p>Enter your Date of Birth to find your horoscope</p>
         <div class="row">
             <div class="col-md-3" style="margin: auto">
-                <form method="post" asp-action="Index" asp-controller="Horoscope">
+                <form id="dateForm" method="post" asp-action="Index" asp-controller="Horoscope">
                     <div class="form-group">
-                        <input id="datepicker1" type="date" class="form-control" asp-for="Dob">
+                        <input id="datepicker1" type="date" class="form-control" asp-for="Dob" value="">
                         <span asp-validation-for="Dob" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <button id="btnFindHoroscope" class="btn btn-outline-light" type="submit">Find Horoscope</button>
+                        <button id="btnFindHoroscope" class="btn btn-outline-light" type="submit" onsubmit="onBtnClick">Find Horoscope</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
 
-    
+        <div id="divLoader" class="justify-content-center">
+            <img src="~/images/loader.gif" />
+        </div>
+    </div>    
 
     <div class="container">
         <div class="row flex justify-content-center">
@@ -56,28 +55,9 @@
 
 @section Scripts{
     <script>
-        @*$("#btnFindHoroscope").click(function () {
-            $('#btnFindHoroscope').attr("disabled", true);
-            $("#divLoader").show();
-            $.ajax
-                ({
-                    url: '/Horoscope/Index',
-                    dataType: "json",
-                    type: "POST",
-                    contentType: 'application/json; charset=utf-8',
-                    data: {},
-                    //async: true,  
-                    //processData: false,  
-                    // cache: false,
-                    success: function (data) {
-                        $("#divLoader").hide();
-                        $('#btnFindHoroscope').attr("disabled", false);
-                    },
-                    error: function (xhr) {
-                        $("#divLoader").hide();
-                        $('#btnFindHoroscope').attr("disabled", false);
-                    }
-                })
-        });*@
+        function onBtnClick() {
+            console.log('clicked');
+            document.getElementById("#divLoader").style.display = "block";
+        }
     </script>
 }
