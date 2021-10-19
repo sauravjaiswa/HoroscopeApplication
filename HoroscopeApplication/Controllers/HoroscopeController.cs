@@ -28,7 +28,7 @@ namespace HoroscopeApplication.Controllers
                 var dateKey = date.Substring(0, date.LastIndexOf("-"));
                 var sunsign = await _sunsignRepository.GetSunsign(dateKey);
 
-                var horoscope = await _horoscopeRepository.GetHoroscope('a'+sunsign);
+                var horoscope = await _horoscopeRepository.GetHoroscope(sunsign);
                 HoroscopeViewModel horoscopeViewModel = new HoroscopeViewModel
                 {
                     Sunsign = sunsign,
