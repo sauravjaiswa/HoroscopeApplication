@@ -36,9 +36,21 @@ namespace HoroscopeApplication.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error(int? code)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            ErrorViewModel errorViewModel = new ErrorViewModel();
+            if (code == 404)
+            {
+                errorViewModel.ErrorCode = "404";
+                errorViewModel.ErrorMessage = "The requested page not found.";
+            }
+            else if(code == 500)
+            {
+                errorViewModel.ErrorCode = "500";
+                errorViewModel.ErrorMessage = "Internal Server Error";
+            }
+
+            return View(errorViewModel);
         }
     }
 }

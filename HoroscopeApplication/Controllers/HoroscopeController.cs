@@ -22,18 +22,25 @@ namespace HoroscopeApplication.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(DateOfBirthViewModel model)
         {
-            var date = model.Dob.ToShortDateString();
-            var dateKey = date.Substring(0, date.LastIndexOf("-"));
-            var sunsign = await _sunsignRepository.GetSunsign(dateKey);
-
-            var horoscope = await _horoscopeRepository.GetHoroscope(sunsign);
-            HoroscopeViewModel horoscopeViewModel = new HoroscopeViewModel
+            try
             {
-                Sunsign = sunsign,
-                Horoscope = horoscope
-            };
+                var date = model.Dob.ToShortDateString();
+                var dateKey = date.Substring(0, date.LastIndexOf("-"));
+                var sunsign = await _sunsignRepository.GetSunsign(dateKey);
 
-            return View(horoscopeViewModel);
+                var horoscope = await _horoscopeRepository.GetHoroscope('a'+sunsign);
+                HoroscopeViewModel horoscopeViewModel = new HoroscopeViewModel
+                {
+                    Sunsign = sunsign,
+                    Horoscope = horoscope
+                };
+
+                return View(horoscopeViewModel);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
     }
 }
