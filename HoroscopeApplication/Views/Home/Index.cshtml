@@ -11,13 +11,15 @@
         <p>Enter your Date of Birth to find your horoscope</p>
         <div class="row">
             <div class="col-md-3" style="margin: auto">
-                <form id="dateForm" method="post" asp-action="Index" asp-controller="Horoscope">
+                <form id="dateForm" method="post" asp-action="Index" asp-controller="Horoscope"
+                      onsubmit="onBtnClick()">
                     <div class="form-group">
                         <input id="datepicker1" type="date" class="form-control" asp-for="Dob" value="">
                         <span asp-validation-for="Dob" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <button id="btnFindHoroscope" class="btn btn-outline-light" type="submit" onclick="onBtnClick()">Find Horoscope</button>
+                        <button id="btnFindHoroscope" name="btnFindHoroscope" class="btn btn-outline-light" 
+                                type="submit">Find Horoscope</button>
                     </div>
                 </form>
             </div>
@@ -59,13 +61,15 @@
            console.log("Test");
            var date = document.querySelector('input[type="date"]').value;
            console.log(date);
-
+           
            @*if (date.value != "") {
-               document.getElementById("btnFindHoroscope").disabled = true;
+               btnFindHoroscope.disabled = true;
            }
            else {
-               document.getElementById("btnFindHoroscope").disabled = false;
-           }*@
+               btnFindHoroscope.disabled = false;
+           }
+
+           return true;*@
        }
    </script>
 }
