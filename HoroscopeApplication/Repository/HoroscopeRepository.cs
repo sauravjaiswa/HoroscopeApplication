@@ -10,15 +10,15 @@ namespace HoroscopeApplication.Repository
     public class HoroscopeRepository : IHoroscopeRepository
     {
         private readonly IHoroscopeApiService _horoscopeApiService;
-        private readonly HoroscopeAppDbContext _dbContext;
+        //private readonly HoroscopeAppDbContext _dbContext;
 
         private static readonly Dictionary<string, HoroscopeMemoryCache> _horoscopeCache = new Dictionary<string, HoroscopeMemoryCache>();
 
-        public HoroscopeRepository(IHoroscopeApiService horoscopeApiService, 
-                                    HoroscopeAppDbContext dbContext)
+        public HoroscopeRepository(IHoroscopeApiService horoscopeApiService) 
+                                    //HoroscopeAppDbContext dbContext)
         {
             _horoscopeApiService = horoscopeApiService;
-            _dbContext = dbContext;
+            //_dbContext = dbContext;
         }
 
         /**Working on DB cache**/
