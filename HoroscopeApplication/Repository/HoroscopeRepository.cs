@@ -118,7 +118,10 @@ namespace HoroscopeApplication.Repository
                 var currDate = DateTime.UtcNow.Date;
                 var prevDate = prevHoroscope.AddedTimestamp.Date;
 
-                if (currDate > prevDate)
+                var currDateLocal = TimeZoneInfo.ConvertTimeFromUtc(currDate, TimeZoneInfo.Local).Date;
+                var prevDateLocal = TimeZoneInfo.ConvertTimeFromUtc(prevDate, TimeZoneInfo.Local).Date;
+
+                if (currDateLocal > prevDateLocal)
                 {
                     horoscopeModel = await _horoscopeApiService.GetHoroscope(sign);
                     RemoveCacheEntry(sign);

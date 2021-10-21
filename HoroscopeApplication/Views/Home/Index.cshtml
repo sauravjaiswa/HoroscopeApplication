@@ -17,7 +17,7 @@
                         <span asp-validation-for="Dob" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <button id="btnFindHoroscope" class="btn btn-outline-light" type="submit" onsubmit="onBtnClick">Find Horoscope</button>
+                        <button id="btnFindHoroscope" class="btn btn-outline-light" type="submit" onclick="onBtnClick()">Find Horoscope</button>
                     </div>
                 </form>
             </div>
@@ -53,11 +53,19 @@
 </div>
 
 
-@section Scripts{
-    <script>
-        function onBtnClick() {
-            console.log('clicked');
-            document.getElementById("#divLoader").style.display = "block";
-        }
-    </script>
+@section Scripts{ 
+   <script>
+       function onBtnClick() {
+           console.log("Test");
+           var date = document.querySelector('input[type="date"]').value;
+           console.log(date);
+
+           @*if (date.value != "") {
+               document.getElementById("btnFindHoroscope").disabled = true;
+           }
+           else {
+               document.getElementById("btnFindHoroscope").disabled = false;
+           }*@
+       }
+   </script>
 }
