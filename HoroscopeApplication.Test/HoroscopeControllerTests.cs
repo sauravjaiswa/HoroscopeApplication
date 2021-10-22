@@ -28,34 +28,6 @@ namespace HoroscopeApplication.Test
             _horoscopeController = new HoroscopeController(_sunsignRepository.Object, _horoscopeRepository.Object);
         }
 
-        //[TestInitialize]
-        //public async Task Setup()
-        //{
-        //    var configuration = new ConfigurationBuilder().AddUserSecrets<HoroscopeControllerTests>()
-        //    .Build();
-
-        //    string connectionString = configuration.GetConnectionString("HoroscopeClientDBConnection");
-        //    DbContextOptions<HoroscopeAppDbContext> dbContextOptions = new DbContextOptionsBuilder<HoroscopeAppDbContext>()
-        //        .UseSqlServer(connectionString)
-        //        .Options;
-
-        //    var context = new HoroscopeAppDbContext(dbContextOptions);
-
-        //    HttpClient client = new HttpClient();
-        //    client.BaseAddress = new Uri(configuration["AztroApi:BaseAddress"]);
-        //    client.DefaultRequestHeaders.Add("x-rapidapi-host", configuration["AztroApi:Host"]);
-        //    client.DefaultRequestHeaders.Add("x-rapidapi-key", configuration["AztroApi:ApiKey"]);
-
-        //    var api = RestService.For<IHoroscopeApiService>(client);
-
-        //    _sunsignRepository = new SunsignRepository(context);
-        //    _horoscopeRepository = new HoroscopeRepository(api, context);
-
-        //    _horoscopeController = new HoroscopeController(_sunsignRepository, _horoscopeRepository);
-
-        //    await _sunsignRepository.MapDates();
-        //}
-
         [TestMethod]
         public async Task Task_DateOfBirth_ReturnActionResult()
         {
@@ -93,13 +65,5 @@ namespace HoroscopeApplication.Test
             
             Assert.IsNotNull(result);
         }
-
-        //[TestCleanup]
-        //public void Cleanup()
-        //{
-        //    _sunsignRepository = null;
-        //    _horoscopeRepository = null;
-        //    _horoscopeController = null;
-        //}
     }
 }
