@@ -24,6 +24,16 @@ namespace HoroscopeApplication.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    DateOfBirthViewModel dateOfBirthViewModel = new DateOfBirthViewModel
+                    {
+                        Dob = DateTime.UtcNow.Date,
+                        SunsignBasicInfos = SunsignBasicInfoRepository.GetAllBasicInfo()
+                    };
+                    return View("~/Views/Home/Index.cshtml", dateOfBirthViewModel);
+                }
+
                 var date = model.Dob.ToShortDateString();
                 var dateKey = date.Substring(0, date.LastIndexOf("-"));
                 var sunsign = await _sunsignRepository.GetSunsign(dateKey);
@@ -36,6 +46,26 @@ namespace HoroscopeApplication.Controllers
                 };
 
                 return View(horoscopeViewModel);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index(string sunsign)
+        {
+            try
+            {
+                var horoscope = await _horoscopeRepository.GetHoroscope(sunsign);
+                HoroscopeViewModel horoscopeViewModel = new HoroscopeViewModel
+                {
+                    Sunsign = sunsign,
+                    Horoscope = horoscope
+                };
+
+                return View("Index", horoscopeViewModel);
             }
             catch (Exception)
             {

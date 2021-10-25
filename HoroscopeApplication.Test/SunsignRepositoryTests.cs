@@ -18,7 +18,7 @@ namespace HoroscopeApplication.Test
         [TestInitialize]
         public async Task Setup()
         {
-            var configuration = new ConfigurationBuilder().AddUserSecrets<SunsignBasicInfoRepositoryTests>()
+            var configuration = new ConfigurationBuilder().AddUserSecrets<SunsignRepositoryTests>()
             .Build();
 
             string connectionString = configuration.GetConnectionString("HoroscopeClientDBConnection");

@@ -9,7 +9,9 @@ namespace HoroscopeApplication.ViewModels
 {
     public class DateOfBirthViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Date of Birth field is required")]
+        [DataType(DataType.Date)]
+        [CustomDobValidate(ErrorMessage = "Please enter a valid date of birth")]
         public DateTime Dob { get; set; }
         [Required]
         public Dictionary<string, SunsignBasicInfo> SunsignBasicInfos { get; set; } = new Dictionary<string, SunsignBasicInfo>();

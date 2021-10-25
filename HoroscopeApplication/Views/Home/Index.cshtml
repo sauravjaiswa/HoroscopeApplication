@@ -13,13 +13,14 @@
             <div class="col-md-3" style="margin: auto">
                 <form id="dateForm" method="post" asp-action="Index" asp-controller="Horoscope"
                       onsubmit="onBtnClick()">
+
                     <div class="form-group">
                         <input id="datepicker1" type="date" class="form-control" asp-for="Dob" value="">
                         <span asp-validation-for="Dob" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <button id="btnFindHoroscope" name="btnFindHoroscope" class="btn btn-outline-light"
-                                type="submit" onclick="onBtnClick()">
+                                type="submit">
                             Find Horoscope
                         </button>
                     </div>
@@ -35,19 +36,22 @@
 
             @foreach (var sunsignInfo in Model.SunsignBasicInfos)
             {
-                <div id="signCard" class="card middle">
-                    <div class="front">
-                        <img src="~/images/sunsigns/@(sunsignInfo.Key).png" alt="">
-                        <h5>@(sunsignInfo.Key)</h5>
-                    </div>
+                <a asp-controller="Horoscope" asp-action="Index" asp-route-sunsign="@sunsignInfo.Key"
+                   onclick="onCardClick()">
+                    <div id="signCard" class="card middle text-light">
+                        <div class="front">
+                            <img src="~/images/sunsigns/@(sunsignInfo.Key).png" alt="">
+                            <h5>@(sunsignInfo.Key)</h5>
+                        </div>
 
-                    <div class="back">
-                        <div class="back-content middle">
-                            <h5>@sunsignInfo.Value.DateRange</h5>
-                            <p>@sunsignInfo.Value.About</p>
+                        <div class="back">
+                            <div class="back-content middle">
+                                <h5>@sunsignInfo.Value.DateRange</h5>
+                                <p>@sunsignInfo.Value.About</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
                 cnt++;
             }
         </div>
@@ -59,7 +63,7 @@
     <script>
        function onBtnClick() {
            var $valid = $("#dateForm").valid();
-           if ($valid) {
+           if ($valid || $('#')) {
                console.log("Valid");
                $('#divLoader').show(0);
                return true;
@@ -69,22 +73,11 @@
                return false;
            }
 
-           @*
-           var date = document.querySelector('input[type="date"]').value;
-           console.log(date);
+        }
 
-           if ($('#datePicker1').is(':empty')) {-->
-               document.querySelector('divLoader') = true;
-               console.log("Testing");
-           }
-            if (date.value != "") {
-               btnFindHoroscope.disabled = true;
-           }
-           else {
-               btnFindHoroscope.disabled = false;
-           }
-
-           return true;*@
-       }
+        function onCardClick() {
+            $('#divLoader').show(0);
+            return true;
+        }
     </script>
 }
