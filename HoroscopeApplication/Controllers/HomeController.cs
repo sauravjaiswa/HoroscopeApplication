@@ -43,11 +43,13 @@ namespace HoroscopeApplication.Controllers
             {
                 errorViewModel.ErrorCode = "404";
                 errorViewModel.ErrorMessage = "The requested page not found.";
+                _logger.LogError($"404 Error : Request Id - {Activity.Current?.Id ?? HttpContext.TraceIdentifier}");
             }
             else if(code == 500)
             {
                 errorViewModel.ErrorCode = "500";
                 errorViewModel.ErrorMessage = "Internal Server Error";
+                _logger.LogError($"500 Error : Request Id - {Activity.Current?.Id ?? HttpContext.TraceIdentifier}");
             }
 
             return View(errorViewModel);
