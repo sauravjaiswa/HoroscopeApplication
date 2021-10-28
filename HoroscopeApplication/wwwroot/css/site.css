@@ -77,8 +77,8 @@ body {
 /*For the card hover on Home/Index page*/
 #signCard {
     cursor: pointer;
-    width: 215px;
-    height: 250px;
+    width: 185px;
+    height: 200px;
 }
 
 .front, .back {
@@ -113,6 +113,14 @@ body {
 .back {
     background: #2c3e50;
     transform: perspective(600px) rotateY(180deg);
+}
+
+.back h5 {
+    font-size: 16px;
+}
+
+.back p {
+    font-size: 14px;
 }
 
 .back-content {
