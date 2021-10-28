@@ -14,7 +14,7 @@ namespace HoroscopeApplication.Models
 
         }
 
-        public DbSet<Sunsign> Sunsigns { get; set; }
+        public virtual DbSet<Sunsign> Sunsigns { get; set; }
         //public DbSet<HoroscopeCache> HoroscopeCaches { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

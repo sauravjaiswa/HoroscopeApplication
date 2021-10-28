@@ -32,7 +32,7 @@ namespace HoroscopeApplication.Test
         public async Task Task_DateOfBirth_ReturnActionResult()
         {
             string date = "01-01";
-            string sunsign = "Aries";
+            string sunsign = SunsignEnum.Aries.ToString();
             var horoscope = new Horoscope
             {
                 Color = "Blue",
@@ -45,7 +45,7 @@ namespace HoroscopeApplication.Test
                 Mood = "Relieved"
             };
 
-            string sign = "Aries";
+            string sign = SunsignEnum.Aries.ToString();
 
             DateOfBirthViewModel dateOfBirthViewModel = new DateOfBirthViewModel
             {
@@ -54,7 +54,7 @@ namespace HoroscopeApplication.Test
             };
 
 
-            _sunsignRepository.Setup(s => s.MapDates());
+            //_sunsignRepository.Setup(s => s.MapDates());
             _sunsignRepository.Setup(s => s.GetSunsign(date))
                 .ReturnsAsync(sign);
 

@@ -35,7 +35,7 @@ namespace HoroscopeApplication.Test
                 Mood = "Relieved"
             };
 
-            string sign = "aries";
+            string sign = SunsignEnum.Aries.ToString().ToLower();
             _mockApiService.Setup(a => a.GetHoroscope(sign, "today"))
                 .ReturnsAsync(horoscope);
 

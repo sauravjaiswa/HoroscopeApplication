@@ -1,6 +1,9 @@
 using HoroscopeApplication.Models;
 using HoroscopeApplication.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace HoroscopeApplication.Test
@@ -16,12 +19,13 @@ namespace HoroscopeApplication.Test
         [TestMethod]
         public void Task_GetAllSunsigns_ReturnListOfSunsign()
         {
-            string[] sunsigns = { "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces" };
+            List<string> sunsigns = Enum.GetNames(typeof(SunsignEnum)).ToList();
+            //{ "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces" };
             var sunsignsToBeTested = SunsignBasicInfoRepository.GetAllSunsigns();
 
             Assert.IsNotNull(sunsignsToBeTested);
             CollectionAssert.AreEquivalent(sunsigns, sunsignsToBeTested);
-            Assert.AreEqual(sunsigns.Length, sunsignsToBeTested.Count);
+            Assert.AreEqual(sunsigns.Count, sunsignsToBeTested.Count);
         }
 
         [TestMethod]
@@ -45,8 +49,8 @@ namespace HoroscopeApplication.Test
         [TestMethod]
         public void Task_GetSunsignBasicInfo_ReturnSunsignBasicInfo()
         {
-            string sign = "Aries";
-            var expected = new SunsignBasicInfo { DateRange = "March 21 – April 19", About = "Aries is the first sign of the Zodiac. It is associated with fresh vigor and new beginnings." };
+            string sign = SunsignEnum.Aries.ToString();
+            var expected = new SunsignBasicInfo { DateRange = "March 21 – April 20", About = "Aries is the first sign of the Zodiac. It is associated with fresh vigor and new beginnings." };
 
             MapSunsignBasicInfo();
             var actual = SunsignBasicInfoRepository.GetSunsignBasicInfo(sign);
