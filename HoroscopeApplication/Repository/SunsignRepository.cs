@@ -34,55 +34,55 @@ namespace HoroscopeApplication.Repository
                 {
                     if (date >= DateTime.Parse("01-01-2020") && date <= DateTime.Parse("19-01-2020"))
                     {
-                        sign = "Capricorn";
+                        sign = SunsignEnum.Capricorn.ToString();
                     }
                     else if (date >= DateTime.Parse("20-01-2020") && date <= DateTime.Parse("18-02-2020"))
                     {
-                        sign = "Aquarius";
+                        sign = SunsignEnum.Aquarius.ToString();
                     }
                     else if (date >= DateTime.Parse("19-02-2020") && date <= DateTime.Parse("20-03-2020"))
                     {
-                        sign = "Pisces";
+                        sign = SunsignEnum.Pisces.ToString();
                     }
                     else if (date >= DateTime.Parse("21-03-2020") && date <= DateTime.Parse("19-04-2020"))
                     {
-                        sign = "Aries";
+                        sign = SunsignEnum.Aries.ToString();
                     }
                     else if (date >= DateTime.Parse("20-04-2020") && date <= DateTime.Parse("20-05-2020"))
                     {
-                        sign = "Taurus";
+                        sign = SunsignEnum.Taurus.ToString();
                     }
                     else if (date >= DateTime.Parse("21-05-2020") && date <= DateTime.Parse("20-06-2020"))
                     {
-                        sign = "Gemini";
+                        sign = SunsignEnum.Gemini.ToString();
                     }
                     else if (date >= DateTime.Parse("21-06-2020") && date <= DateTime.Parse("22-07-2020"))
                     {
-                        sign = "Cancer";
+                        sign = SunsignEnum.Cancer.ToString();
                     }
                     else if (date >= DateTime.Parse("23-07-2020") && date <= DateTime.Parse("22-08-2020"))
                     {
-                        sign = "Leo";
+                        sign = SunsignEnum.Leo.ToString();
                     }
                     else if (date >= DateTime.Parse("23-08-2020") && date <= DateTime.Parse("22-09-2020"))
                     {
-                        sign = "Virgo";
+                        sign = SunsignEnum.Virgo.ToString();
                     }
                     else if (date >= DateTime.Parse("23-09-2020") && date <= DateTime.Parse("22-10-2020"))
                     {
-                        sign = "Libra";
+                        sign = SunsignEnum.Libra.ToString();
                     }
                     else if (date >= DateTime.Parse("23-10-2020") && date <= DateTime.Parse("21-11-2020"))
                     {
-                        sign = "Scorpio";
+                        sign = SunsignEnum.Scorpio.ToString();
                     }
                     else if (date >= DateTime.Parse("22-11-2020") && date <= DateTime.Parse("21-12-2020"))
                     {
-                        sign = "Sagittarius";
+                        sign = SunsignEnum.Sagittarius.ToString();
                     }
                     else if (date >= DateTime.Parse("22-12-2020") && date <= DateTime.Parse("31-12-2020"))
                     {
-                        sign = "Capricorn";
+                        sign = SunsignEnum.Capricorn.ToString();
                     }
 
                     string dateTemp = date.ToString();

@@ -42,7 +42,7 @@ namespace HoroscopeApplication.Test
             var receivedHoroscope = await _horoscopeRepository.GetHoroscope(sign);
 
             Assert.IsNotNull(receivedHoroscope);
-            Assert.AreEqual(horoscope.Color, receivedHoroscope.Color);
+            Assert.AreEqual(horoscope.Date_range, receivedHoroscope.Date_range);
         }
     }
 }

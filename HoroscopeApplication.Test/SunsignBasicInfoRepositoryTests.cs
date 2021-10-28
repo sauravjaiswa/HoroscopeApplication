@@ -21,7 +21,7 @@ namespace HoroscopeApplication.Test
 
             Assert.IsNotNull(sunsignsToBeTested);
             CollectionAssert.AreEquivalent(sunsigns, sunsignsToBeTested);
-            Assert.AreEqual(sunsigns.Length, sunsignsToBeTested.Length);
+            Assert.AreEqual(sunsigns.Length, sunsignsToBeTested.Count);
         }
 
         [TestMethod]

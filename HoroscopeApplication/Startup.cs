@@ -20,6 +20,7 @@ namespace HoroscopeApplication
     {
         public Startup(IConfiguration configuration)
         {
+            SunsignBasicInfoRepository.MapSunsignBasicInfo();
             Configuration = configuration;
         }
 
@@ -73,7 +74,7 @@ namespace HoroscopeApplication
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseCustomMiddleware();
+            //app.UseCustomMiddleware();
 
             app.UseMvcWithDefaultRoute();
         }

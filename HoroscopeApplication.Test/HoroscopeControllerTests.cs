@@ -61,9 +61,10 @@ namespace HoroscopeApplication.Test
             _horoscopeRepository.Setup(h => h.GetHoroscope(sunsign))
                 .ReturnsAsync(horoscope);
 
-            var result = _horoscopeController.Index(dateOfBirthViewModel);
-            
+            var result = await _horoscopeController.Index(dateOfBirthViewModel);
+                     
             Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(IActionResult));
         }
     }
 }

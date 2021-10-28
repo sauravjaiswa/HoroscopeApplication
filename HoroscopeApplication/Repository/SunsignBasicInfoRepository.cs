@@ -9,7 +9,7 @@ namespace HoroscopeApplication.Repository
     public static class SunsignBasicInfoRepository
     {
         private static readonly Dictionary<string, SunsignBasicInfo> _sunsignInfo = new Dictionary<string, SunsignBasicInfo>();
-        private static string[] sunsigns = { "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces" };
+        private static List<string> sunsigns = Enum.GetNames(typeof(SunsignEnum)).ToList();     //;{ "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces" };
 
         public static void MapSunsignBasicInfo()
         {
@@ -40,7 +40,7 @@ namespace HoroscopeApplication.Repository
             return null;
         }
 
-        public static string[] GetAllSunsigns()
+        public static List<string> GetAllSunsigns()
         {
             return sunsigns;
         }

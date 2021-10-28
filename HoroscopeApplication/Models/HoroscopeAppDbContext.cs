@@ -15,6 +15,13 @@ namespace HoroscopeApplication.Models
         }
 
         public DbSet<Sunsign> Sunsigns { get; set; }
-        public DbSet<HoroscopeCache> HoroscopeCaches { get; set; }
+        //public DbSet<HoroscopeCache> HoroscopeCaches { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Seed();
+
+        }
     }
 }
