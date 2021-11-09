@@ -72,5 +72,27 @@ namespace HoroscopeApplication.Controllers
                 throw new Exception();
             }
         }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> Test(string sunsign)
+        {
+            try
+            {
+                var horoscope = await _horoscopeRepository.GetHoroscope(sunsign);
+                HoroscopeViewModel horoscopeViewModel = new HoroscopeViewModel
+                {
+                    Sunsign = sunsign,
+                    Horoscope = horoscope
+                };
+
+                return Json(horoscopeViewModel);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
     }
 }

@@ -29,6 +29,15 @@
         </div>
 
         <div id="divLoader"></div>
+
+        <div id="horoscopeCard" class="card" style="display: none">
+            <div class="card-body">
+                <h6 id="sunsign"></h6>
+            </div>
+            <div class="card-body">
+                <h6 id="horoscope"></h6>
+            </div>
+        </div>
     </div>    
 
     <div class="container">
@@ -36,8 +45,9 @@
 
             @foreach (var sunsignInfo in Model.SunsignBasicInfos)
             {
-                <a asp-controller="Horoscope" asp-action="Index" asp-route-sunsign="@sunsignInfo.Key"
-                   onclick="onCardClick()">
+                @*<a asp-controller="Horoscope" asp-action="Index" asp-route-sunsign="@sunsignInfo.Key"
+                onclick="onCardClick()">*@
+                <a onclick="onTestClick('@sunsignInfo.Key')">
                     <div id="signCard" class="card middle text-light">
                         <div class="front">
                             <img src="~/images/sunsigns/@(sunsignInfo.Key).png" alt="">
@@ -78,6 +88,31 @@
         function onCardClick() {
             $('#divLoader').show(0);
             return true;
+        }
+
+
+        function onTestClick(sunsign) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', "/Horoscope/Test?sunsign=" + sunsign, true);
+            xhr.onprogress = function () {
+                console.log('progress');
+                $('#divLoader').show(0);
+            }
+            xhr.onload = function () {
+                $('#divLoader').hide();
+                document.getElementById("horoscopeCard").style.display = "block";
+                let parsed = JSON.parse(this.responseText);
+                console.log("-------------------------parsed----------------------------");
+                console.log(parsed);
+
+                let horoscope = parsed.horoscope;
+
+                console.log(horoscope);
+
+                document.getElementById("sunsign").innerText = sunsign;
+                document.getElementById("horoscope").innerText = horoscope.description;
+            }
+            xhr.send();
         }
     </script>
 }
