@@ -8,11 +8,11 @@ namespace HoroscopeApplication.Repository
     public class HistoryRepository : IHistoryRepository
     {
         private static readonly Dictionary<string, Queue<History>> _searchHistory = new Dictionary<string, Queue<History>>();
-        public bool AddHistory(string id, History history)
+        public void AddHistory(string id, History history)
         {
             if (!_searchHistory.ContainsKey(id))
             {
-                return false;
+                _searchHistory[id] = new Queue<History>();
             }
 
             if (_searchHistory[id].Count == 5)
@@ -21,25 +21,25 @@ namespace HoroscopeApplication.Repository
             }
 
             _searchHistory[id].Enqueue(history);
-
-            return true;
         }
 
         public IList<History> GetHistories(string id)
         {
-            var histories = _searchHistory[id].ToList();
+            var histories = _searchHistory.GetValueOrDefault(id);
 
-            return histories;
+            return histories == null ? null : histories.ToList();
         }
 
         public History GetHistory(string id, DateTime searchedTime)
         {
-            throw new NotImplementedException();
+            var history = _searchHistory[id].FirstOrDefault(h => h.SearchedTimestamp == searchedTime);
+
+            return history;
         }
 
-        public void RemoveHistory(string id, DateTime searchedTime)
+        public void RemoveHistories(string id)
         {
-            throw new NotImplementedException();
+            _searchHistory[id].Clear();
         }
     }
 }

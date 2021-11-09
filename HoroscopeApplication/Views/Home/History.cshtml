@@ -1,0 +1,32 @@
+﻿@model IEnumerable<HoroscopeApplication.Models.History>
+
+@{
+    ViewData["Title"] = "History";
+}
+
+<div class="text-center">
+    @if (Model == null)
+    {
+        <h2>You do not have any search history</h2>
+    }
+    else
+    {
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Searched Time</th>
+                    <th scope="col">Sun Sign</th>
+                </tr>
+            </thead>
+            <tbody class="text-light">
+                @foreach (var history in Model)
+                {
+                    <tr>
+                        <td>@history.SearchedTimestamp</td>
+                        <td>@history.SearchedHoroscope.Sunsign</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

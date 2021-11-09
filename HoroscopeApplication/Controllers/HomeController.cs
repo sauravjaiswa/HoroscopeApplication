@@ -14,10 +14,12 @@ namespace HoroscopeApplication.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHistoryRepository _historyRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHistoryRepository historyRepository)
         {
             _logger = logger;
+            _historyRepository = historyRepository;
         }
 
         public IActionResult Index()
@@ -28,6 +30,13 @@ namespace HoroscopeApplication.Controllers
                 SunsignBasicInfos = SunsignBasicInfoRepository.GetAllBasicInfo()
             };
             return View(dateOfBirthViewModel);
+        }
+
+        public IActionResult History()
+        {
+            var histories = _historyRepository.GetHistories("A");
+
+            return View(histories);
         }
 
         public IActionResult Privacy()

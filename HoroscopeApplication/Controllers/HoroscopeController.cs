@@ -1,4 +1,5 @@
-﻿using HoroscopeApplication.Repository;
+﻿using HoroscopeApplication.Models;
+using HoroscopeApplication.Repository;
 using HoroscopeApplication.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,11 +13,13 @@ namespace HoroscopeApplication.Controllers
     {
         private readonly ISunsignRepository _sunsignRepository;
         private readonly IHoroscopeRepository _horoscopeRepository;
+        private readonly IHistoryRepository _historyRepository;
 
-        public HoroscopeController(ISunsignRepository sunsignRepository, IHoroscopeRepository horoscopeRepository)
+        public HoroscopeController(ISunsignRepository sunsignRepository, IHoroscopeRepository horoscopeRepository, IHistoryRepository historyRepository)
         {
             _sunsignRepository = sunsignRepository;
             _horoscopeRepository = horoscopeRepository;
+            _historyRepository = historyRepository;
         }
 
         [HttpPost]
@@ -31,6 +34,7 @@ namespace HoroscopeApplication.Controllers
                         Dob = DateTime.UtcNow.Date,
                         SunsignBasicInfos = SunsignBasicInfoRepository.GetAllBasicInfo()
                     };
+
                     return View("~/Views/Home/Index.cshtml", dateOfBirthViewModel);
                 }
 
@@ -44,6 +48,14 @@ namespace HoroscopeApplication.Controllers
                     Sunsign = sunsign,
                     Horoscope = horoscope
                 };
+
+                History history = new History
+                {
+                    SearchedTimestamp = DateTime.UtcNow,
+                    SearchedHoroscope = horoscopeViewModel
+                };
+
+                _historyRepository.AddHistory("A", history);
 
                 return View(horoscopeViewModel);
             }
@@ -64,6 +76,14 @@ namespace HoroscopeApplication.Controllers
                     Sunsign = sunsign,
                     Horoscope = horoscope
                 };
+
+                History history = new History
+                {
+                    SearchedTimestamp = DateTime.UtcNow,
+                    SearchedHoroscope = horoscopeViewModel
+                };
+
+                _historyRepository.AddHistory("A", history);
 
                 return View("Index", horoscopeViewModel);
             }
@@ -86,6 +106,14 @@ namespace HoroscopeApplication.Controllers
                     Sunsign = sunsign,
                     Horoscope = horoscope
                 };
+
+                History history = new History
+                {
+                    SearchedTimestamp = DateTime.UtcNow,
+                    SearchedHoroscope = horoscopeViewModel
+                };
+
+                _historyRepository.AddHistory("A", history);
 
                 return Json(horoscopeViewModel);
             }

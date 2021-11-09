@@ -8,9 +8,9 @@ namespace HoroscopeApplication.Repository
 {
     public interface IHistoryRepository
     {
-        bool AddHistory(string id, History history);
+        void AddHistory(string id, History history);
         IList<History> GetHistories(string id);
         History GetHistory(string id, DateTime searchedTime);
-        void RemoveHistory(string id, DateTime searchedTime);
+        void RemoveHistories(string id);
     }
 }
