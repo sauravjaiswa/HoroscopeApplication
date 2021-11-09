@@ -10,7 +10,7 @@ namespace HoroscopeApplication.Repository
     {
         void AddHistory(string id, History history);
         IList<History> GetHistories(string id);
-        History GetHistory(string id, DateTime searchedTime);
+        History GetHistory(string id, int historyId);
         void RemoveHistories(string id);
     }
 }

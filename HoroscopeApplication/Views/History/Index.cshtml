@@ -4,7 +4,7 @@
     ViewData["Title"] = "History";
 }
 
-<div class="text-center">
+<a class="text-center">
     @if (Model == null)
     {
         <h2>You do not have any search history</h2>
@@ -16,14 +16,17 @@
                 <tr>
                     <th scope="col">Searched Time</th>
                     <th scope="col">Sun Sign</th>
+                    <th scope="col">Horoscope</th>
                 </tr>
             </thead>
             <tbody class="text-light">
                 @foreach (var history in Model)
                 {
-                    <tr>
+                    <tr class="text-light btn-outline-dark">
                         <td>@history.SearchedTimestamp</td>
                         <td>@history.SearchedHoroscope.Sunsign</td>
+                        <td>@history.SearchedHoroscope.Horoscope.Description</td>
+                        <td><a class="btn btn-outline-light" asp-controller="History" asp-action="ViewHistory" asp-route-id="@history.Id">View</a></td>
                     </tr>
                 }
             </tbody>

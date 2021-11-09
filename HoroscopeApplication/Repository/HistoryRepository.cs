@@ -20,6 +20,7 @@ namespace HoroscopeApplication.Repository
                 _searchHistory[id].Dequeue();
             }
 
+            history.Id = _searchHistory.Count() + 1;
             _searchHistory[id].Enqueue(history);
         }
 
@@ -30,9 +31,9 @@ namespace HoroscopeApplication.Repository
             return histories == null ? null : histories.ToList();
         }
 
-        public History GetHistory(string id, DateTime searchedTime)
+        public History GetHistory(string id, int historyId)
         {
-            var history = _searchHistory[id].FirstOrDefault(h => h.SearchedTimestamp == searchedTime);
+            var history = _searchHistory[id].FirstOrDefault(h => h.Id == historyId);
 
             return history;
         }

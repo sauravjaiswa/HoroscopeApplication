@@ -8,6 +8,7 @@ namespace HoroscopeApplication.Models
 {
     public class History
     {
+        public int Id { get; set; }
         public DateTime SearchedTimestamp { get; set; }
         public HoroscopeViewModel SearchedHoroscope { get; set; }
     }
