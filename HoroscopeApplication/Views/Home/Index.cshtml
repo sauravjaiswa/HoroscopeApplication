@@ -7,63 +7,65 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to Horoscope Finder</h1>
-    <div class="container">
-        <p>Enter your Date of Birth to find your horoscope</p>
-        <div class="row">
-            <div class="col-md-3" style="margin: auto">
-                <form id="dateForm" method="post" asp-action="Index" asp-controller="Horoscope"
-                      onsubmit="onBtnClick()">
+    <div class="row">
+        <div class="container col-sm-6">
+            <p>Enter your Date of Birth to find your horoscope</p>
+            <div class="row">
+                <div class="col-md-6" style="margin: auto">
+                    <form id="dateForm" method="post" asp-action="Index" asp-controller="Horoscope"
+                          onsubmit="onBtnClick()">
 
-                    <div class="form-group">
-                        <input id="datepicker1" type="date" class="form-control" asp-for="Dob" value="">
-                        <span asp-validation-for="Dob" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <button id="btnFindHoroscope" name="btnFindHoroscope" class="btn btn-outline-light"
-                                type="submit">
-                            Find Horoscope
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div id="divLoader"></div>
-
-        <div id="horoscopeCard" class="card" style="display: none">
-            <div class="card-body">
-                <h6 id="sunsign"></h6>
-            </div>
-            <div class="card-body">
-                <h6 id="horoscope"></h6>
-            </div>
-        </div>
-    </div>    
-
-    <div class="container">
-        <div class="row flex justify-content-center">
-
-            @foreach (var sunsignInfo in Model.SunsignBasicInfos)
-            {
-                @*<a asp-controller="Horoscope" asp-action="Index" asp-route-sunsign="@sunsignInfo.Key"
-                onclick="onCardClick()">*@
-                <a onclick="onTestClick('@sunsignInfo.Key')">
-                    <div id="signCard" class="card middle text-light">
-                        <div class="front">
-                            <img src="~/images/sunsigns/@(sunsignInfo.Key).png" alt="">
-                            <h5>@(sunsignInfo.Key)</h5>
+                        <div class="form-group">
+                            <input id="datepicker1" type="date" class="form-control" asp-for="Dob" value="">
+                            <span asp-validation-for="Dob" class="text-danger"></span>
                         </div>
+                        <div class="form-group">
+                            <button id="btnFindHoroscope" name="btnFindHoroscope" class="btn btn-outline-light"
+                                    type="submit">
+                                Find Horoscope
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-                        <div class="back">
-                            <div class="back-content middle">
-                                <h5>@sunsignInfo.Value.DateRange</h5>
-                                <p>@sunsignInfo.Value.About</p>
+            <div id="divLoader"></div>
+
+            <div id="horoscopeCard" class="card" style="display: none">
+                <div class="card-body">
+                    <h6 id="sunsign"></h6>
+                </div>
+                <div class="card-body">
+                    <h6 id="horoscope"></h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="container col-sm-6">
+            <div class="row flex justify-content-center">
+
+                @foreach (var sunsignInfo in Model.SunsignBasicInfos)
+                {
+                    @*<a asp-controller="Horoscope" asp-action="Index" asp-route-sunsign="@sunsignInfo.Key"
+                    onclick="onCardClick()">*@
+                    <a onclick="onTestClick('@sunsignInfo.Key')">
+                        <div id="signCard" class="card middle text-light">
+                            <div class="front">
+                                <img src="~/images/sunsigns/@(sunsignInfo.Key).png" alt="">
+                                <h5>@(sunsignInfo.Key)</h5>
+                            </div>
+
+                            <div class="back">
+                                <div class="back-content middle">
+                                    <h5>@sunsignInfo.Value.DateRange</h5>
+                                    <p>@sunsignInfo.Value.About</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-                cnt++;
-            }
+                    </a>
+                    cnt++;
+                }
+            </div>
         </div>
     </div>
 </div>
@@ -71,6 +73,7 @@
 
 @section Scripts{ 
     <script>
+        let btnFindHoroscope = document.getElementById("btnFindHoroscope");
        function onBtnClick() {
            var $valid = $("#dateForm").valid();
            if ($valid || $('#')) {
@@ -92,15 +95,21 @@
 
 
         function onTestClick(sunsign) {
+            btnFindHoroscope.classList.add("button--loading");
+            btnFindHoroscope.innerHTML = '';
+
             const xhr = new XMLHttpRequest();
             xhr.open('GET', "/Horoscope/Test?sunsign=" + sunsign, true);
             xhr.onprogress = function () {
                 console.log('progress');
-                $('#divLoader').show(0);
             }
             xhr.onload = function () {
-                $('#divLoader').hide();
+                btnFindHoroscope.classList.remove("button--loading");
+                btnFindHoroscope.innerHTML = 'Find Horoscope';
+
                 document.getElementById("horoscopeCard").style.display = "block";
+
+
                 let parsed = JSON.parse(this.responseText);
                 console.log("-------------------------parsed----------------------------");
                 console.log(parsed);
