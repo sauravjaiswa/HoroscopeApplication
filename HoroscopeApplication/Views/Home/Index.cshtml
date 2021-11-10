@@ -45,9 +45,9 @@
 
             @foreach (var sunsignInfo in Model.SunsignBasicInfos)
             {
-                @*<a asp-controller="Horoscope" asp-action="Index" asp-route-sunsign="@sunsignInfo.Key"
-                onclick="onCardClick()">*@
-                <a onclick="onTestClick('@sunsignInfo.Key')">
+                <a asp-controller="Horoscope" asp-action="Index" asp-route-sunsign="@sunsignInfo.Key"
+                onclick="onCardClick()">
+                @*<a onclick="onTestClick('@sunsignInfo.Key')">*@
                     <div id="signCard" class="card middle text-light">
                         <div class="front">
                             <img src="~/images/sunsigns/@(sunsignInfo.Key).png" alt="">

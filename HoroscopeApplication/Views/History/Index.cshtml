@@ -4,7 +4,7 @@
     ViewData["Title"] = "History";
 }
 
-<a class="text-center">
+<div class="text-center">
     @if (Model == null)
     {
         <h2>You do not have any search history</h2>
@@ -22,14 +22,66 @@
             <tbody class="text-light">
                 @foreach (var history in Model)
                 {
-                    <tr class="text-light btn-outline-dark">
+                    <tr class="text-light btn-outline-dark" onclick="onHistoryRowClick('@history.Id')">
                         <td>@history.SearchedTimestamp</td>
                         <td>@history.SearchedHoroscope.Sunsign</td>
                         <td>@history.SearchedHoroscope.Horoscope.Description</td>
-                        <td><a class="btn btn-outline-light" asp-controller="History" asp-action="ViewHistory" asp-route-id="@history.Id">View</a></td>
+                        @*<td><a class="btn btn-outline-light" asp-controller="History" asp-action="ViewHistory" asp-route-id="@history.Id">View</a></td>*@
                     </tr>
                 }
             </tbody>
         </table>
     }
 </div>
+
+<div id="historicalHoroscopeCard" class="card" style="display: none; background: #2c3e50; padding: 10px;">
+    <h3 style="align-content: center">Historical Horoscope Information</h3>
+    <div class="card-body">
+        <h5 id="sunsign"></h5>
+        <h6 id="daterange"></h6>
+        <h6 id="description"></h6>
+        <h6 id="color"></h6>
+        <h6 id="compatibility"></h6>
+        <h6 id="luckynumber"></h6>
+        <h6 id="luckytime"></h6>
+        <p id="date" style="float: right; font-style:italic"></p>
+    </div>
+</div>
+
+
+@section Scripts{ 
+    <script>
+        function onHistoryRowClick(id) {
+            $('#divLoader').show(0);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', "/History/ViewHistory?id=" + id, true);
+            xhr.onprogress = function () {
+                console.log('progress');
+            }
+            xhr.onload = function () {
+                $('#divLoader').hide(0);
+
+                document.getElementById("historicalHoroscopeCard").style.display = "block";
+
+
+                let parsed = JSON.parse(this.responseText);
+                console.log("-------------------------parsed----------------------------");
+                console.log(parsed);
+
+                let sunsign = parsed.sunsign;
+                let horoscope = parsed.horoscope;
+
+                document.getElementById("sunsign").innerText = sunsign;
+                document.getElementById("daterange").innerText = "Date Range - " + horoscope.date_range;
+                document.getElementById("description").innerText = "Description - " + horoscope.description;
+                document.getElementById("color").innerText = "Color - " + horoscope.color;
+                document.getElementById("compatibility").innerText = "Compatibility - " + horoscope.compatibility;
+                document.getElementById("luckynumber").innerText = "Lucky Number - " + horoscope.lucky_number;
+                document.getElementById("luckytime").innerText = "Lucky Time - " + horoscope.lucky_time;
+                document.getElementById("date").innerText = "Data of " + horoscope.current_date;
+            }
+            xhr.send();
+        }
+    </script>
+}

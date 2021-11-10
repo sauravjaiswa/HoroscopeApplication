@@ -20,7 +20,7 @@ namespace HoroscopeApplication.Repository
                 _searchHistory[id].Dequeue();
             }
 
-            history.Id = _searchHistory.Count() + 1;
+            history.Id = _searchHistory[id].Count() + 1;
             _searchHistory[id].Enqueue(history);
         }
 

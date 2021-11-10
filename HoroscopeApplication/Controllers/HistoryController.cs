@@ -28,7 +28,8 @@ namespace HoroscopeApplication.Controllers
             var history = _historyRepository.GetHistory("A", id);
             var horoscopeViewModel = history.SearchedHoroscope;
 
-            return View("~/Views/Horoscope/Index.cshtml", horoscopeViewModel);
+            //return View("~/Views/Horoscope/Index.cshtml", horoscopeViewModel);
+            return Json(horoscopeViewModel);
         }
     }
 }
