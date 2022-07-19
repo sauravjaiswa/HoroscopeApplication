@@ -29,6 +29,7 @@ namespace HoroscopeApplication.Test
         }
 
         [TestMethod]
+        [Ignore]
         public async Task Task_DateOfBirth_ReturnActionResult()
         {
             string date = "01-01";
