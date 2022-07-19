@@ -36,6 +36,7 @@ namespace HoroscopeApplication.Test
         //}
 
         [TestMethod]
+        [Ignore]
         public async Task Task_GetSunsign_ReturnSunsign()
         {
             //Arrange
