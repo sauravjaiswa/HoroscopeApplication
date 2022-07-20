@@ -1,22 +1,21 @@
+node('building'){
+    stage('build') {
+        sh 'dotnet build ./HoroscopeApplication.sln'
+    }
 
-sh 'dotnet build ./HoroscopeApplication.sln'
+    stage('Test') {
+        sh 'dotnet test ./HoroscopeApplication.Test/ /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=../coverage.cobertura.xml'
+    }
 
-
-stage('Test'){
-sh 'dotnet test ./HoroscopeApplication.Test/ /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=../coverage.cobertura.xml'
-}
-
-stage('publish test'){
-publish()
-}
-
+    stage('publish test') {
+        publish()
+    }
 
 def publish(Map args = [:]) {
-
     standardLineCoverageTarget = 80
     standardMethodCoverageTarget = 80
     standardClassCoverageTarget = 90
-    
+
     coberturaReportFile = args.coberturaReportFile ?: 'coverage.cobertura.xml'
     lineCoverageTarget = args.lineCoverageTarget ?: standardLineCoverageTarget
     methodCoverageTarget = args.methodCoverageTarget ?: standardMethodCoverageTarget
@@ -37,4 +36,5 @@ def publish(Map args = [:]) {
 
 String codeCoverageTargets(Map args) {
     return "${args.healthy}, ${args.unhealthy}, ${args.unstable}"
+}
 }
