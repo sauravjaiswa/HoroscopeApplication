@@ -1,4 +1,4 @@
-node('building'){
+node('docker'){
     stage('build') {
         sh 'dotnet build ./HoroscopeApplication.sln'
     }
