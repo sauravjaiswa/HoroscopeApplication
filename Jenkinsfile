@@ -10,7 +10,7 @@ node('building'){
     stage('publish test') {
         publish()
     }
-
+}
 def publish(Map args = [:]) {
     standardLineCoverageTarget = 80
     standardMethodCoverageTarget = 80
@@ -37,4 +37,4 @@ def publish(Map args = [:]) {
 String codeCoverageTargets(Map args) {
     return "${args.healthy}, ${args.unhealthy}, ${args.unstable}"
 }
-}
+
