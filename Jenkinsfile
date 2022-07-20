@@ -1,9 +1,9 @@
 stage('build'){
-sh 'dotnet build .\HoroscopeApplication.sln'
+sh 'dotnet build ./HoroscopeApplication.sln'
 }
 
 stage('Test'){
-sh 'dotnet test .\HoroscopeApplication.Test/ /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=../coverage.cobertura.xml'
+sh 'dotnet test ./HoroscopeApplication.Test/ /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=../coverage.cobertura.xml'
 }
 
 stage('publish test'){
