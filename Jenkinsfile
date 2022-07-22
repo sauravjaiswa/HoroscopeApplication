@@ -1,4 +1,4 @@
-node('docker'){
+
     stage('build') {
         sh 'dotnet build ./HoroscopeApplication.sln'
     }
@@ -10,7 +10,7 @@ node('docker'){
     stage('publish test') {
         publish()
     }
-}
+
 def publish(Map args = [:]) {
     standardLineCoverageTarget = 80
     standardMethodCoverageTarget = 80
