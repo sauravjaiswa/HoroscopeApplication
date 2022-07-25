@@ -31,10 +31,7 @@ def checkout(script) {
             sh 'sudo git reset --hard && sudo git clean -fdx'
          
         
-    } catch (error) {
-        teams.notification(status: 'Git Checkout Error',
-            message: "${env.JOB_NAME} #${env.BUILD_NUMBER} threw error:\n${error}",
-            color: 'ff2828')
+    } catch (error) {        
         cleanWs()
         throw error
     }
