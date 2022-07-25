@@ -17,7 +17,7 @@ node('windows'){
 
 def checkout(script) {
     try {
-        if (isUnix()) {
+      
             script.checkout([
                 $class: 'GitSCM',
                 branches: script.scm.branches,
@@ -29,16 +29,7 @@ def checkout(script) {
             ])
             // workaround for root user created files
             sh 'sudo git reset --hard && sudo git clean -fdx'
-        } else {
-            script.checkout([
-                $class: 'GitSCM',
-                branches: script.scm.branches,
-                extensions: [
-                    [$class: 'CloneOption', noTags: false, shallow: false, depth: 0, reference: ''],
-                    [$class: 'CleanCheckout'],
-                ],
-                userRemoteConfigs: script.scm.userRemoteConfigs
-            ])
+         
         }
     } catch (error) {
         teams.notification(status: 'Git Checkout Error',
