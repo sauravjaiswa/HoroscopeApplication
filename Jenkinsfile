@@ -20,7 +20,6 @@ def checkout(script) {
       
             script.checkout([
                 $class: 'GitSCM',
-                branches: 'master',
                 extensions: [
                     [$class: 'CloneOption', noTags: false, shallow: false, depth: 0, reference: ''],
                     [$class: 'LocalBranch', localBranch: env.BRANCH_NAME],
