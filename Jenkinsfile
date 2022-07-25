@@ -30,7 +30,7 @@ def checkout(script) {
             // workaround for root user created files
             sh 'sudo git reset --hard && sudo git clean -fdx'
          
-        }
+        
     } catch (error) {
         teams.notification(status: 'Git Checkout Error',
             message: "${env.JOB_NAME} #${env.BUILD_NUMBER} threw error:\n${error}",
