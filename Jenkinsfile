@@ -24,8 +24,7 @@ def checkout(script) {
                 extensions: [
                     [$class: 'CloneOption', noTags: false, shallow: false, depth: 0, reference: ''],
                     [$class: 'LocalBranch', localBranch: env.BRANCH_NAME],
-                ],
-                userRemoteConfigs: script.scm.userRemoteConfigs
+                ]
             ])
             // workaround for root user created files
             sh 'sudo git reset --hard && sudo git clean -fdx'
