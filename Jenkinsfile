@@ -1,4 +1,7 @@
 node('windows'){
+    stage('checkout'){
+        checkout(this);
+    }
     stage('build') {
         sh 'dotnet build ./HoroscopeApplication.sln'
     }
@@ -11,6 +14,41 @@ node('windows'){
         publish()
     }
 }
+
+def checkout(script) {
+    try {
+        if (isUnix()) {
+            script.checkout([
+                $class: 'GitSCM',
+                branches: script.scm.branches,
+                extensions: [
+                    [$class: 'CloneOption', noTags: false, shallow: false, depth: 0, reference: ''],
+                    [$class: 'LocalBranch', localBranch: env.BRANCH_NAME],
+                ],
+                userRemoteConfigs: script.scm.userRemoteConfigs
+            ])
+            // workaround for root user created files
+            sh 'sudo git reset --hard && sudo git clean -fdx'
+        } else {
+            script.checkout([
+                $class: 'GitSCM',
+                branches: script.scm.branches,
+                extensions: [
+                    [$class: 'CloneOption', noTags: false, shallow: false, depth: 0, reference: ''],
+                    [$class: 'CleanCheckout'],
+                ],
+                userRemoteConfigs: script.scm.userRemoteConfigs
+            ])
+        }
+    } catch (error) {
+        teams.notification(status: 'Git Checkout Error',
+            message: "${env.JOB_NAME} #${env.BUILD_NUMBER} threw error:\n${error}",
+            color: 'ff2828')
+        cleanWs()
+        throw error
+    }
+}
+
 def publish(Map args = [:]) {
     standardLineCoverageTarget = 80
     standardMethodCoverageTarget = 80
