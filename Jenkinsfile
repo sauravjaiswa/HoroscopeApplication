@@ -8,9 +8,8 @@ node('windows'){
     stage('test'){
         echo 'Chal gaya'
      }
-      stage('build') {
-        sh 'pwd'
-        //  sh 'dotnet build ./HoroscopeApplication.sln'
+      stage('build') {        
+        'dotnet build ./HoroscopeApplication.sln'
      }
 
     // stage('Test') {
