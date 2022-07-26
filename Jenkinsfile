@@ -38,9 +38,9 @@ def publish(Map args = [:]) {
                                      classCoverageTarget < standardClassCoverageTarget
 
     cobertura(coberturaReportFile: coberturaReportFile,
-              lineCoverageTargets: codeCoverageTargets(healthy: 90, unhealthy: lineCoverageTarget, unstable: lineCoverageTarget * 0.75),
-              methodCoverageTargets: codeCoverageTargets(healthy: 90, unhealthy: methodCoverageTarget, unstable: methodCoverageTarget * 0.75),
-              classCoverageTargets: codeCoverageTargets(healthy: 100, unhealthy: classCoverageTarget, unstable: classCoverageTarget * 0.75),
+              lineCoverageTargets: codeCoverageTargets(healthy: 0, unhealthy: lineCoverageTarget, unstable: lineCoverageTarget * 0.75),
+              methodCoverageTargets: codeCoverageTargets(healthy: 0, unhealthy: methodCoverageTarget, unstable: methodCoverageTarget * 0.75),
+              classCoverageTargets: codeCoverageTargets(healthy: 0, unhealthy: classCoverageTarget, unstable: classCoverageTarget * 0.75),
               maxNumberOfBuilds: 0,
               autoUpdateHealth: isBelowStandardCoverageTargets,
               autoUpdateStability: isBelowStandardCoverageTargets)
