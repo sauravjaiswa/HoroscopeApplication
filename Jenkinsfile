@@ -24,9 +24,9 @@ node('windows'){
 
 
 def publish(Map args = [:]) {
-    standardLineCoverageTarget = 80
-    standardMethodCoverageTarget = 80
-    standardClassCoverageTarget = 90
+    standardLineCoverageTarget = 0
+    standardMethodCoverageTarget = 0
+    standardClassCoverageTarget = 0
 
     coberturaReportFile = args.coberturaReportFile ?: 'coverage.cobertura.xml'
     lineCoverageTarget = args.lineCoverageTarget ?: standardLineCoverageTarget
