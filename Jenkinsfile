@@ -8,9 +8,10 @@ node('windows'){
     stage('test'){
         echo 'Chal gaya'
      }
-    //  stage('build') {
-    //     sh 'dotnet build ./HoroscopeApplication.sln'
-    // }
+      stage('build') {
+        sh 'pwd'
+        //  sh 'dotnet build ./HoroscopeApplication.sln'
+     }
 
     // stage('Test') {
     //     sh 'dotnet test ./HoroscopeApplication.Test/ /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=../coverage.cobertura.xml'
