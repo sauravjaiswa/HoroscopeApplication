@@ -5,17 +5,20 @@ node('windows'){
     // stage('pull git'){
     //     sh 'git checkout -master'
     // }
-    // stage('build') {
-        sh 'dotnet build ./HoroscopeApplication.sln'
-    //}
+    stage('test'){
+        echo 'Chal gaya'
+     }
+    //  stage('build') {
+    //     sh 'dotnet build ./HoroscopeApplication.sln'
+    // }
 
-    stage('Test') {
-        sh 'dotnet test ./HoroscopeApplication.Test/ /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=../coverage.cobertura.xml'
-    }
+    // stage('Test') {
+    //     sh 'dotnet test ./HoroscopeApplication.Test/ /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=../coverage.cobertura.xml'
+    // }
 
-    stage('publish test') {
-        publish()
-    }
+    // stage('publish test') {
+    //     publish()
+    // }
 }
 
 def checkout(script) {
