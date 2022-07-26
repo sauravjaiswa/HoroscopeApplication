@@ -2,6 +2,9 @@ node('windows'){
     // stage('checkout'){
     //     checkout(this);
     // }
+    stage('pull git'){
+        sh 'git checkout -master'
+    }
     stage('build') {
         sh 'dotnet build ./HoroscopeApplication.sln'
     }
