@@ -20,12 +20,14 @@ node('windows'){
         publish()
     }
 
-    stage('Sonar'){
-        'dotnet sonarscanner begin /k:"WGID_Sonar_Token" /d:sonar.login="WGID_Sonar_Token" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml'
-        'dotnet build --no-incremental'
-        'dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.xml''
-        'dotnet sonarscanner end /d:sonar.login="WGID_Sonar_Token"'
+    stage('SonarQube Analysis') {
+    def scannerHome = tool 'SonarScanner for MSBuild'
+    withSonarQubeEnv() {
+       'dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:\"WGID_Sonar_Token\"'
+       'dotnet build'
+       'dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end'
     }
+  }
 }
 
 
