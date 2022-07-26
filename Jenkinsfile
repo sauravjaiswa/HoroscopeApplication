@@ -1,7 +1,7 @@
 node('windows'){
-    stage('checkout'){
-        checkout(this);
-    }
+    // stage('checkout'){
+    //     checkout(this);
+    // }
     stage('build') {
         sh 'dotnet build ./HoroscopeApplication.sln'
     }
@@ -20,10 +20,12 @@ def checkout(script) {
       
             script.checkout([
                 $class: 'GitSCM',
+                branches: 'master',
                 extensions: [
                     [$class: 'CloneOption', noTags: false, shallow: false, depth: 0, reference: ''],
                     [$class: 'LocalBranch', localBranch: env.BRANCH_NAME],
-                ]
+                ],
+                userRemoteConfigs: script.scm.userRemoteConfigs
             ])
             // workaround for root user created files
             sh 'sudo git reset --hard && sudo git clean -fdx'
