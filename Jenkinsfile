@@ -12,36 +12,16 @@ node('windows'){
         'dotnet build ./HoroscopeApplication.sln'
      }
 
-    // stage('Test') {
-    //     sh 'dotnet test ./HoroscopeApplication.Test/ /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=../coverage.cobertura.xml'
-    // }
+    stage('Test') {
+         'dotnet test ./HoroscopeApplication.Test/ /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=../coverage.cobertura.xml'
+    }
 
-    // stage('publish test') {
-    //     publish()
-    // }
-}
-
-def checkout(script) {
-    try {
-      
-            script.checkout([
-                $class: 'GitSCM',
-                branches: 'master',
-                extensions: [
-                    [$class: 'CloneOption', noTags: false, shallow: false, depth: 0, reference: ''],
-                    [$class: 'LocalBranch', localBranch: env.BRANCH_NAME],
-                ],
-                userRemoteConfigs: script.scm.userRemoteConfigs
-            ])
-            // workaround for root user created files
-            sh 'sudo git reset --hard && sudo git clean -fdx'
-         
-        
-    } catch (error) {        
-        cleanWs()
-        throw error
+    stage('publish test') {
+        publish()
     }
 }
+
+
 
 def publish(Map args = [:]) {
     standardLineCoverageTarget = 80
