@@ -21,7 +21,7 @@ node('windows'){
     }
 
     stage('Sonar'){
-        'dotnet sonarscanner begin /k:"WGID_Sonar_Token" /d:sonar.login="c9e4795c037798aa0c8b821cb6a32a73a6c2ecbb" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml'
+        'dotnet sonarscanner begin /k:"WGID_Sonar_Token" /d:sonar.login="WGID_Sonar_Token" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml'
         'dotnet build --no-incremental'
         'dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.xml''
         'dotnet sonarscanner end /d:sonar.login="WGID_Sonar_Token"'
