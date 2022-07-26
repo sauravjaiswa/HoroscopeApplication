@@ -20,6 +20,7 @@ node('windows'){
         publish()
     }
     stage('Sonar'){
+        echo 'WGID_Sonar_Token'
         'dotnet sonarscanner end /d:sonar.login="WGID_Sonar_Token"'
     }
 
