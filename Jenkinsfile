@@ -19,6 +19,9 @@ node('windows'){
     stage('publish test') {
         publish()
     }
+    stage('Sonar'){
+        'dotnet sonarscanner end /d:sonar.login="WGID_Sonar_Token"'
+    }
 
     stage('SonarQube Analysis') {
     def scannerHome = tool 'SonarScanner for MSBuild'
